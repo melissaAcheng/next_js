@@ -1,8 +1,16 @@
 import Link from 'next/link'
+import CreateNote from './CreateNote';
 import styles from './notes.module.css'
 
+// export const dynamic = 'auto',
+//   dynamicParams = true,
+//   revalidate = 0,
+//   fetchCache = 'auto',
+//   runtime = 'nodejs',
+//   preferredRegion = 'auto'
+
 async function getNotes() {
-  const res = await fetch('http://127.0.0.1:8090/api/collections/tasks/records?page=1');
+  const res = await fetch('http://127.0.0.1:8090/api/collections/tasks/records?page=1', {cache: 'no-store'});
   const data = await res.json();
   return data?.items as any[];
 }
@@ -18,6 +26,8 @@ export default async function NotesPage() {
           return <Note key={note.id} note={note}/>
         })}
       </div>
+
+      <CreateNote />
     </div>
   )
 }
