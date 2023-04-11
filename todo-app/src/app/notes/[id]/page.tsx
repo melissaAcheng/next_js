@@ -3,7 +3,7 @@ import styles from '../notes.module.css'
 // gets one note from database
 async function getNote(noteId: string) {
   const res = await fetch(`http://127.0.0.1:8090/api/collections/tasks/records/${noteId}`, {next: {revalidate: 10}});
-  const data = res.json();
+  const data = await res.json();
   return data;
 }
 
