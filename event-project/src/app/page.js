@@ -1,9 +1,14 @@
-import styles from './page.module.css'
+import styles from "./page.module.css";
+import { getFeaturedEvents } from "../../dummy-data";
+import EventList from "../../components/events/EventList";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      Home Page
-    </main>
-  )
+	const featuredEvents = getFeaturedEvents();
+	// console.log(featuredEvents);
+
+	return (
+		<main className={styles.main}>
+			<EventList items={featuredEvents} />
+		</main>
+	);
 }
